@@ -1,6 +1,9 @@
 package com.elite.ronald.comluzcontego;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -28,18 +31,11 @@ public class principal extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
-
+         new Cargar(this).execute();
         //new clPrLoad(getApplicationContext(), lista).execute();
+       //lista =new clEnergia(this).lista();
 
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
-
-        mRecyclerView.setHasFixedSize(true);
-
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        mRecyclerView.setAdapter(new clAdaptadorMes(lista));
-        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
 
     }
@@ -71,5 +67,45 @@ public class principal extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private class Cargar extends AsyncTask<Void,Void,Void>{
+        ProgressDialog pd = null;
+        List<clEnergia> datos;
+        Context context;
+
+        public Cargar(Context context){
+            this.context = context;
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+           datos = new clEnergia(getApplicationContext()).lista();
+            return null;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            pd = new ProgressDialog(getApplicationContext());
+            pd.setTitle("Buscando Informacion");
+            pd.setMessage("Espere un momento...");
+            pd.setCancelable(false);
+            pd.setIndeterminate(true);
+            pd.show();
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            if(pd != null)
+                pd.dismiss();
+            mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
+
+            mRecyclerView.setHasFixedSize(true);
+
+            mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
+            mRecyclerView.setAdapter(new clAdaptadorMes(datos));
+            mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+
+        }
     }
 }
