@@ -5,20 +5,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.com.entidades.rfs.clEnergia;
 import com.elite.ronald.comluzcontego.R;
 
 import java.util.List;
-
-import entidades.clLista;
 
 /**
  * Created by Ronald on 04/02/15.
  */
 public class clAdaptadorMes extends RecyclerView.Adapter<clAdaptadorMes.ViewHolder> {
 
-    public List<clLista> lista;
+    public List<clEnergia> lista;
 
-    public clAdaptadorMes(List<clLista> lista){
+    public clAdaptadorMes(List<clEnergia> lista){
         this.lista = lista;
     }
 
@@ -31,9 +30,9 @@ public class clAdaptadorMes extends RecyclerView.Adapter<clAdaptadorMes.ViewHold
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
-        clLista cl = lista.get(position);
-        holder.Conteo.setText("" + cl.getCantidad());
-        holder.Mes.setText(cl.getMes());
+        clEnergia cl = lista.get(position);
+        holder.Conteo.setText("" + cl.getENERGY_CONTEO());
+        holder.Mes.setText("" + cl.getFECHA());
     }
 
     @Override

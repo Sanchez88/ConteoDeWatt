@@ -1,6 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Inf. Luz</string>
 
+    <string name="app_name">Inf. Luz</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_agregar_conteo">Nueva inf.</string>
+    <string name="lblConteo">Numero Actual:</string>
+    <string name="hit_conteo">Numero Actual:</string>
+    <string name="btnAddConteo">Guardar</string>
+
+    <string name="action_addConteo">Nuevo</string>
+
+    <string name="action_listConteo">Listado</string>
+
 </resources>

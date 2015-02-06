@@ -1,5 +1,6 @@
 package com.elite.ronald.comluzcontego;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -7,6 +8,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import com.com.entidades.rfs.clEnergia;
+import com.com.logica.rfs.clPrLoad;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +22,7 @@ import entidades.clLista;
 
 public class principal extends ActionBarActivity {
     private RecyclerView mRecyclerView;
-    List<clLista> lista;
+    List<clEnergia> lista;
 
 
     @Override
@@ -25,20 +30,8 @@ public class principal extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
 
-        lista = new ArrayList<clLista>();
+        //new clPrLoad(getApplicationContext(), lista).execute();
 
-        lista.add(new clLista(1200,"ENERO"));
-        lista.add(new clLista(1300,"FEBRERO"));
-        lista.add(new clLista(1400,"MARZO"));
-        lista.add(new clLista(1500,"ABRIL"));
-        lista.add(new clLista(1600,"MAYO"));
-        lista.add(new clLista(1700,"JUNI"));
-        lista.add(new clLista(1800,"JULIO"));
-        lista.add(new clLista(1900,"AGOSTO"));
-        lista.add(new clLista(2000,"SEPTIEMBRE"));
-        lista.add(new clLista(2100,"OCTUBRE"));
-        lista.add(new clLista(2200,"NOVIEMBRE"));
-        lista.add(new clLista(2300,"DICIEMBRE"));
 
         mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
 
@@ -68,6 +61,12 @@ public class principal extends ActionBarActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
+        if (id == R.id.action_addConteo) {
+            Intent i = new Intent(this, agregar_conteo.class);
+            startActivity(i);
+            return true;
+        }
+
         if (id == R.id.action_settings) {
             return true;
         }
