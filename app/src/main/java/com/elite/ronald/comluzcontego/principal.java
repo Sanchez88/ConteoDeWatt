@@ -1,46 +1,98 @@
 package com.elite.ronald.comluzcontego;
 
-import android.app.ProgressDialog;
-import android.content.Context;
+import android.app.AlertDialog;
+import android.app.Fragment;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.AsyncTask;
+
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.com.entidades.rfs.clEnergia;
-import com.com.logica.rfs.clPrLoad;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import adaptadores.clAdaptadorMes;
+import java.security.Principal;
 
 
 public class principal extends ActionBarActivity {
-    private RecyclerView mRecyclerView;
-    List<clEnergia> lista;
-
+    private ImageButton btn;
+    private View v;
+    EditText txt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
 
+
+        btn = (ImageButton) findViewById(R.id.imgB);
+
+                btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                AlertDialog.Builder dialogo = new AlertDialog.Builder(principal.this);
+                dialogo.setTitle("Agregar información.");
+                LayoutInflater inflater =  getLayoutInflater();
+                v = inflater.inflate(R.layout.add_info, null);
+
+                txt = (EditText) findViewById(R.id.txtConteoD);
+                dialogo.setView(v)
+                        .setPositiveButton(R.string.btnAddConteo, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                clEnergia cl = new clEnergia(principal.this);
+                                int num = Integer.parseInt(txt.getText().toString());
+                                cl.Guardar(num);
+                                Toast.makeText(principal.this, "Guardado Correctamente.", Toast.LENGTH_SHORT).show();
+
+                            }
+                        })
+                        .setNegativeButton(R.string.btnAddCancelar, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+
+                dialogo.show();
+            }
+        });
+
+
         //new clPrLoad(getApplicationContext(), lista).execute();
-       lista =new clEnergia(this).lista();
-        mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
+       //lista =new clEnergia(this).lista();
+        /*mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        mRecyclerView.setAdapter(new clAdaptadorMes(lista));
+       // mRecyclerView.setAdapter(new clAdaptadorMes(lista));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-
-
-
+        new clPrLoad(this,mRecyclerView).execute();
+        */
+        /*new Thread(new Runnable() {
+            @Override
+            public void run() {
+                lista =new clEnergia(getApplicationContext()).lista();
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                mRecyclerView.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        mRecyclerView.setAdapter(new clAdaptadorMes(lista));
+                    }
+                });
+            }
+        }).start();*/
 
     }
 

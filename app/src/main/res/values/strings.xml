@@ -8,9 +8,12 @@
     <string name="lblConteo">Numero Actual:</string>
     <string name="hit_conteo">Numero Actual:</string>
     <string name="btnAddConteo">Guardar</string>
-
+    <string name="btnAddCancelar">Cancelar</string>
     <string name="action_addConteo">Nuevo</string>
 
     <string name="action_listConteo">Listado</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -13,7 +14,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/lblConteo"
-        android:id="@+id/textView"
+        android:id="@+id/lblD"
         android:textStyle="bold|italic" />
 
     <EditText
@@ -21,13 +22,7 @@
         android:layout_height="wrap_content"
         android:inputType="number"
         android:ems="10"
-        android:id="@+id/txtConteo"
+        android:id="@+id/txtConteoD"
         android:hint="@string/hit_conteo" />
-
-   <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/btnAddConteo"
-        android:id="@+id/btnAgregarConteo" />
 
 </LinearLayout>
