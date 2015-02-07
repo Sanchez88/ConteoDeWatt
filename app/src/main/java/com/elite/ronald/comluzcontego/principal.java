@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -22,10 +23,12 @@ import com.com.entidades.rfs.clEnergia;
 import java.security.Principal;
 
 
-public class principal extends ActionBarActivity {
+public class principal extends ActionBarActivity{
     private ImageButton btn;
+    private Button btnAdd, btnCancelar;
     private View v;
     EditText txt;
+    AlertDialog.Builder dialogo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,29 +41,33 @@ public class principal extends ActionBarActivity {
             @Override
             public void onClick(View v) {
 
-                AlertDialog.Builder dialogo = new AlertDialog.Builder(principal.this);
+                dialogo = new AlertDialog.Builder(principal.this);
                 dialogo.setTitle("Agregar información.");
                 LayoutInflater inflater =  getLayoutInflater();
                 v = inflater.inflate(R.layout.add_info, null);
+                btnAdd = (Button) v.findViewById(R.id.btnAgregarConteoD);
+                txt = (EditText) v.findViewById(R.id.txtConteoD);
 
-                txt = (EditText) findViewById(R.id.txtConteoD);
+                btnAdd.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        clEnergia cl = new clEnergia(getApplicationContext());
+
+                        cl.Guardar(Integer.parseInt(txt.getText().toString()));
+
+                        Toast.makeText(getApplicationContext(),"Guardado Correctamente.", Toast.LENGTH_SHORT).show();
+                        txt.setText("");
+                    }
+                });
+
+
                 dialogo.setView(v)
-                        .setPositiveButton(R.string.btnAddConteo, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                clEnergia cl = new clEnergia(principal.this);
-                                int num = Integer.parseInt(txt.getText().toString());
-                                cl.Guardar(num);
-                                Toast.makeText(principal.this, "Guardado Correctamente.", Toast.LENGTH_SHORT).show();
-
-                            }
-                        })
-                        .setNegativeButton(R.string.btnAddCancelar, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.cancel();
-                            }
-                        });
+                .setNegativeButton(R.string.btnAddCancelar, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
 
                 dialogo.show();
             }
@@ -94,6 +101,11 @@ public class principal extends ActionBarActivity {
             }
         }).start();*/
 
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
     }
 
 

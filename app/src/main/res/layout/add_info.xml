@@ -25,4 +25,14 @@
         android:id="@+id/txtConteoD"
         android:hint="@string/hit_conteo" />
 
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btnAddConteo"
+            android:id="@+id/btnAgregarConteoD"
+            android:layout_gravity="center_horizontal" />
+
+
+
 </LinearLayout>
