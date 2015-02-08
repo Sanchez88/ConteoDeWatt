@@ -58,7 +58,7 @@ public class clAdaptadorMes extends RecyclerView.Adapter<clAdaptadorMes.ViewHold
 
         @Override
         public void onClick(View v) {
-            Toast.makeText(context, "llego: " + lista.get(getPosition()).getHORA(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Hora : " + lista.get(getPosition()).getHORA(), Toast.LENGTH_SHORT).show();
         }
     }
 }
