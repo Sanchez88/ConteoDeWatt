@@ -4,10 +4,14 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.provider.ContactsContract;
 
 import com.datos.rfs.clBase;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -69,7 +73,18 @@ public class clEnergia {
         clBase db = new clBase(context);
         SQLiteDatabase base = db.getWritableDatabase();
         ContentValues values = new ContentValues();
+        Date d = new Date();
+
+        Calendar c = Calendar.getInstance();
+
+        //SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+       // String formattedDate = df.format(c.getTime());
+
+        String year = new SimpleDateFormat("yyyy-MM-dd").format(c.getTime());
+        String time = new SimpleDateFormat("HH:mm:ss").format(c.getTime());
         values.put("ACTUAL", actual);
+        values.put("HORA", time);
+        values.put("FECHA",year);
 
         base.insert("ENERGY_CONTEO", null, values);
 

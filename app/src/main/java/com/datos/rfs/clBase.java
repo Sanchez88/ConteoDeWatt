@@ -13,8 +13,8 @@ public class clBase extends SQLiteOpenHelper {
     private String tb = "CREATE TABLE ENERGY_CONTEO(" +
     "CON_ID INTEGER  PRIMARY KEY AUTOINCREMENT NOT NULL," +
     "ACTUAL INTEGER  NOT NULL," +
-    "HORA TIME DEFAULT CURRENT_TIME NOT NULL," +
-    "FECHA DATE DEFAULT CURRENT_DATE NOT NULL" +
+    "HORA TIME NOT NULL," +
+    "FECHA DATE NOT NULL" +
     ")";
     /*
     private String tb2 = "CREATE TABLE MESES ( " +
