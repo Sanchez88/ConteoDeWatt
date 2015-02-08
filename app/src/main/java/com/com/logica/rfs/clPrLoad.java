@@ -50,6 +50,6 @@ public class clPrLoad extends AsyncTask<Void,Void,List<clEnergia>> {
         if(pd != null){
             pd.dismiss();
         }
-        recyclerView.setAdapter(new clAdaptadorMes(clEnergias));
+        recyclerView.setAdapter(new clAdaptadorMes(ctx,clEnergias));
     }
 }

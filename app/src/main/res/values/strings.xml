@@ -13,6 +13,31 @@
 
     <string name="action_listConteo">Listado</string>
 
+    <string-array name="ListSemana">
+        <item>LUNES</item>
+        <item>MARTES</item>
+        <item>MIERCOLES</item>
+        <item>JUEVEZ</item>
+        <item>VIERNES</item>
+        <item>SABADO</item>
+        <item>DOMINGO</item>
+    </string-array>
+
+    <string-array name="ListMeses">
+        <item>ENERO</item>
+        <item>FEBRERO</item>
+        <item>MARZO</item>
+        <item>ABRIL</item>
+        <item>MAYO</item>
+        <item>JUNIO</item>
+        <item>JULIO</item>
+        <item>AGOSTO</item>
+        <item>SEPTIEMBRE</item>
+        <item>OCTUBRE</item>
+        <item>NOVIEMBRE</item>
+        <item>DICIEMBRE</item>
+    </string-array>
+
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

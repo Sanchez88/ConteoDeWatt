@@ -21,6 +21,8 @@ import android.widget.Toast;
 import com.com.entidades.rfs.clEnergia;
 
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class principal extends ActionBarActivity{
@@ -33,6 +35,10 @@ public class principal extends ActionBarActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
+
+        String [] meses = getResources().getStringArray(R.array.ListMeses);
+        String [] semana = getResources().getStringArray(R.array.ListSemana);
+
 
 
         btn = (ImageButton) findViewById(R.id.imgB);

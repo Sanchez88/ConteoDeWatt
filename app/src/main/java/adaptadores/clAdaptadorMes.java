@@ -1,9 +1,11 @@
 package adaptadores;
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.com.entidades.rfs.clEnergia;
 import com.elite.ronald.comluzcontego.R;
@@ -15,10 +17,13 @@ import java.util.List;
  */
 public class clAdaptadorMes extends RecyclerView.Adapter<clAdaptadorMes.ViewHolder> {
 
-    public List<clEnergia> lista;
+    private List<clEnergia> lista;
+    private Context context;
 
-    public clAdaptadorMes(List<clEnergia> lista){
+    public clAdaptadorMes(Context context,List<clEnergia> lista){
+
         this.lista = lista;
+        this.context = context;
     }
 
     @Override
@@ -40,7 +45,7 @@ public class clAdaptadorMes extends RecyclerView.Adapter<clAdaptadorMes.ViewHold
         return lista.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+     class ViewHolder extends RecyclerView.ViewHolder implements  View.OnClickListener {
         // each data item is just a string in this case
         public TextView Mes, Conteo;
 
@@ -48,6 +53,12 @@ public class clAdaptadorMes extends RecyclerView.Adapter<clAdaptadorMes.ViewHold
             super(v);
             Mes = (TextView) v.findViewById(R.id.twListaMes);
             Conteo = (TextView) v.findViewById(R.id.twListaConteo);
+            Mes.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            Toast.makeText(context, "llego: " + lista.get(getPosition()).getHORA(), Toast.LENGTH_SHORT).show();
         }
     }
 }
