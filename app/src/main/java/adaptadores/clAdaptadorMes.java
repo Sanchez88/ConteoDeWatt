@@ -37,7 +37,7 @@ public class clAdaptadorMes extends RecyclerView.Adapter<clAdaptadorMes.ViewHold
 
         clEnergia cl = lista.get(position);
         holder.Conteo.setText("" + cl.getENERGY_CONTEO());
-        holder.Mes.setText("" + cl.getFECHA());
+        holder.Mes.setText("" + cl.getFECHA() + " -- " + cl.getHORA());
     }
 
     @Override
@@ -53,7 +53,7 @@ public class clAdaptadorMes extends RecyclerView.Adapter<clAdaptadorMes.ViewHold
             super(v);
             Mes = (TextView) v.findViewById(R.id.twListaMes);
             Conteo = (TextView) v.findViewById(R.id.twListaConteo);
-            Mes.setOnClickListener(this);
+            //Mes.setOnClickListener(this); llamando el evento OnClickListener Por el momento  no lo llamare.
         }
 
         @Override
