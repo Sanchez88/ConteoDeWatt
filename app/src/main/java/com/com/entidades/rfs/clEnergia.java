@@ -129,4 +129,22 @@ public class clEnergia {
         //base.close();
         return lista;
     }
+
+    public List<clMes> listaMes(){
+        clBase db = new clBase(context);
+        SQLiteDatabase base = db.getReadableDatabase();
+        Cursor c =  base.query(tabla,new String[]{"strftime('%Y-%m', FECHA) AS MES","(MAX(ACTUAL) - MIN(ACTUAL)) AS CONSUMO"},null,null,"strftime('%Y-%m', FECHA)",null, "FECHA DESC");
+        List<clMes> lista = new ArrayList<clMes>();
+        if(c.moveToFirst()){
+            do
+            {
+                lista.add(new clMes(c.getString(0),c.getInt(1)));
+
+            }while(c.moveToNext());
+        }
+
+        c.close();
+        //base.close();
+        return lista;
+    }
 }

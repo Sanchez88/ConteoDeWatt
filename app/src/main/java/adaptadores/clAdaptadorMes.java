@@ -1,5 +1,6 @@
 package adaptadores;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,7 +9,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.com.entidades.rfs.clEnergia;
+import com.com.entidades.rfs.clMes;
 import com.elite.ronald.comluzcontego.R;
+import com.elite.ronald.comluzcontego.principal;
 
 import java.util.List;
 
@@ -17,10 +20,10 @@ import java.util.List;
  */
 public class clAdaptadorMes extends RecyclerView.Adapter<clAdaptadorMes.ViewHolder> {
 
-    private List<clEnergia> lista;
+    private List<clMes> lista;
     private Context context;
 
-    public clAdaptadorMes(Context context,List<clEnergia> lista){
+    public clAdaptadorMes(Context context,List<clMes> lista){
         this.lista = lista;
         this.context = context;
     }
@@ -34,9 +37,9 @@ public class clAdaptadorMes extends RecyclerView.Adapter<clAdaptadorMes.ViewHold
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
-        clEnergia cl = lista.get(position);
-        holder.Conteo.setText("" + cl.getENERGY_CONTEO());
-        holder.Mes.setText("" + cl.getFECHA() + " -- " + cl.getHORA());
+        clMes cl = lista.get(position);
+        holder.Conteo.setText("" + cl.getConteo());
+        holder.Mes.setText("" + cl.getMes());
     }
 
     @Override
@@ -53,11 +56,14 @@ public class clAdaptadorMes extends RecyclerView.Adapter<clAdaptadorMes.ViewHold
             Mes = (TextView) v.findViewById(R.id.twListaMes);
             Conteo = (TextView) v.findViewById(R.id.twListaConteo);
             //Mes.setOnClickListener(this); llamando el evento OnClickListener Por el momento  no lo llamare.
+            v.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-            Toast.makeText(context, "Hora : " + lista.get(getPosition()).getHORA(), Toast.LENGTH_SHORT).show();
+            Intent i = new Intent(context, principal.class);
+            i.putExtra("fecha", lista.get(getPosition()).getMes());
+            context.startActivity(i);
         }
     }
 }
