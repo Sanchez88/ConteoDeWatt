@@ -10,13 +10,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.com.entidades.rfs.clEnergia;
-import com.com.logica.rfs.clPrLoad;
+import com.com.logica.rfs.clPrDias;
+
 
 import java.util.List;
-import java.util.zip.Inflater;
+
 
 
 /**
@@ -41,7 +41,7 @@ public class fragListaMes extends Fragment {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         // mRecyclerView.setAdapter(new clAdaptadorMes(lista));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        new clPrLoad(getActivity(),mRecyclerView).execute();
+        new clPrDias(getActivity(),mRecyclerView).execute();
 
         return v;
     }

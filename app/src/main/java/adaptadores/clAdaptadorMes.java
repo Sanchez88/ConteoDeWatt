@@ -21,7 +21,6 @@ public class clAdaptadorMes extends RecyclerView.Adapter<clAdaptadorMes.ViewHold
     private Context context;
 
     public clAdaptadorMes(Context context,List<clEnergia> lista){
-
         this.lista = lista;
         this.context = context;
     }

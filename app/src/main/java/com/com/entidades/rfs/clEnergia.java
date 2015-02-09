@@ -111,4 +111,22 @@ public class clEnergia {
         //base.close();
         return lista;
     }
+
+    public List<clDias> listaDias(){
+        clBase db = new clBase(context);
+        SQLiteDatabase base = db.getReadableDatabase();
+        Cursor c =  base.query(tabla,new String[]{"COUNT(CON_ID) AS CON_ID","(MAX(ACTUAL) - MIN(ACTUAL)) AS CONSUMO", "FECHA"},null,null,"FECHA",null, "FECHA DESC");
+        List<clDias> lista = new ArrayList<clDias>();
+        if(c.moveToFirst()){
+            do
+            {
+                lista.add(new clDias(c.getInt(0),c.getInt(1), c.getString(2)));
+
+            }while(c.moveToNext());
+        }
+
+        c.close();
+        //base.close();
+        return lista;
+    }
 }
