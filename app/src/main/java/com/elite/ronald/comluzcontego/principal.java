@@ -2,6 +2,8 @@ package com.elite.ronald.comluzcontego;
 
 import android.app.AlertDialog;
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.Intent;
 
@@ -28,20 +30,35 @@ import java.util.List;
 public class principal extends ActionBarActivity{
     private ImageButton btn;
     private Button btnAdd, btnCancelar;
+    private Frag_Dias frdias;
   //  private View v;
    // EditText txt;
     //AlertDialog.Builder dialogo;
 
+    private void inicializar(){
+        if(frdias != null)
+            frdias = new Frag_Dias();
+
+    }
+
+    private void cargarFragmento(Fragment fragment){
+        FragmentManager manager = getFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.contenedor, fragment);
+        transaction.commit();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
 
-        String [] meses = getResources().getStringArray(R.array.ListMeses);
-        String [] semana = getResources().getStringArray(R.array.ListSemana);
+       // String [] meses = getResources().getStringArray(R.array.ListMeses);
+        //String [] semana = getResources().getStringArray(R.array.ListSemana);
 
+        frdias = new Frag_Dias();
 
+        cargarFragmento(frdias);
 
         btn = (ImageButton) findViewById(R.id.imgB);
 

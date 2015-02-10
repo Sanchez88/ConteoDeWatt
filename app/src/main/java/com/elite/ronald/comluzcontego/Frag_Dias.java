@@ -14,12 +14,12 @@ import com.com.logica.rfs.clPrDias;
 
 import java.util.List;
 
-public class frag_mes extends Fragment {
+public class Frag_Dias extends Fragment {
     private RecyclerView mRecyclerView;
     private List<clEnergia> lista;
 
 
-    public frag_mes() {
+    public Frag_Dias() {
     }
 
 
