@@ -13,7 +13,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:name="com.elite.ronald.comluzcontego.frag_mes"
-        android:id="@+id/fragment"
+        android:id="@+id/frDias"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -23,8 +23,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/imgB"
         android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/fragment"
-        android:layout_alignEnd="@+id/fragment"
+        android:layout_alignRight="@+id/frDias"
+        android:layout_alignEnd="@+id/frDias"
         android:src="@drawable/abc_ic_menu_paste_mtrl_am_alpha"
         android:layout_marginBottom="15dp"
         android:layout_marginLeft="15dp" />

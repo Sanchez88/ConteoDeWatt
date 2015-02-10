@@ -28,9 +28,11 @@ import java.util.List;
 public class principal extends ActionBarActivity{
     private ImageButton btn;
     private Button btnAdd, btnCancelar;
-    private View v;
-    EditText txt;
-    AlertDialog.Builder dialogo;
+  //  private View v;
+   // EditText txt;
+    //AlertDialog.Builder dialogo;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +48,10 @@ public class principal extends ActionBarActivity{
                 btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), agregar_conteo.class);
+                startActivity(i);
 
+                /*
                 dialogo = new AlertDialog.Builder(principal.this);
                 dialogo.setTitle("Agregar información.");
                 LayoutInflater inflater =  getLayoutInflater();
@@ -63,6 +68,9 @@ public class principal extends ActionBarActivity{
 
                         Toast.makeText(getApplicationContext(),"Guardado Correctamente.", Toast.LENGTH_SHORT).show();
                         txt.setText("");
+
+
+
                     }
                 });
 
@@ -75,7 +83,7 @@ public class principal extends ActionBarActivity{
                     }
                 });
 
-                dialogo.show();
+                dialogo.show();*/
             }
         });
 
