@@ -2,6 +2,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.elite.ronald.comluzcontego.agregar_conteo">
-    <item android:id="@+id/action_listConteo" android:title="@string/action_listConteo"
+    <item android:id="@+id/action_listMes" android:title="@string/action_listMes"
         android:orderInCategory="100" app:showAsAction="never" />
 </menu>

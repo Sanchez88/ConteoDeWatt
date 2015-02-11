@@ -1,8 +1,11 @@
 package adaptadores;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -60,13 +63,34 @@ public class clAdaptadorListDias extends RecyclerView.Adapter<clAdaptadorListDia
 
         }
 
+
          @Override
          public void onClick(View v) {
-             Intent i = new Intent(context, agregar_conteo.class);
-             clEnergia cl =  lista.get(getPosition());
+             AlertDialog.Builder dialogo = new AlertDialog.Builder(context);
+             dialogo.setTitle("Seleccione la opción");
+             final View v1 = v;
 
-             i.putExtra("codigo",new String[]{"" +cl.getCON_ID(),"" +cl.getENERGY_CONTEO(),cl.getFECHA()});
-             context.startActivity(i);
+             dialogo.setSingleChoiceItems(context.getResources().getStringArray(R.array.ListDialogo), -1, new DialogInterface.OnClickListener() {
+                 @Override
+                 public void onClick(DialogInterface dialog, int which) {
+                     if(context.getResources().getStringArray(R.array.ListDialogo)[which].equals("Editar")){
+                         Intent i = new Intent(context, agregar_conteo.class);
+                         clEnergia cl =  lista.get(getPosition());
+
+                         i.putExtra("codigo",new String[]{"" +cl.getCON_ID(),"" +cl.getENERGY_CONTEO(),cl.getFECHA()});
+                         context.startActivity(i);
+                     }
+
+
+                 }
+             });
+             dialogo.setNegativeButton(R.string.btnAddCancelar, new DialogInterface.OnClickListener() {
+                 @Override
+                 public void onClick(DialogInterface dialog, int which) {
+                     dialog.cancel();
+                 }
+             });
+             dialogo.show();
          }
      }
 }

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools" tools:context=".principal">
     <item android:id="@+id/action_addConteo" android:title="@string/action_addConteo"
         android:orderInCategory="100" app:showAsAction="never" />
-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
+    <item android:id="@+id/action_listMes" android:title="@string/action_listMes"
         android:orderInCategory="100" app:showAsAction="never" />
+
 </menu>

@@ -11,9 +11,18 @@
     <string name="btnAddCancelar">Cancelar</string>
     <string name="action_addConteo">Nuevo</string>
 
+    <string name="action_listMes">Lista de Meses</string>
+    <string name="action_listDias">Lista de Dias</string>
+
     <string name="action_fecha">Fecha</string>
 
     <string name="action_listConteo">Listado</string>
+
+    <string-array name="ListDialogo">
+        <!--<item>Seleccionar</item>-->
+        <item>Editar</item>
+        <!--<item>Eliminar</item>-->
+    </string-array>
 
     <string-array name="ListSemana">
         <item>LUNES</item>
