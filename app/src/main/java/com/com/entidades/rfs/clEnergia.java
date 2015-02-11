@@ -91,6 +91,28 @@ public class clEnergia {
         base.close();
     }
 
+    public void Actualizar(int codigo, int actual){
+        clBase db = new clBase(context);
+        SQLiteDatabase base = db.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        Date d = new Date();
+
+        Calendar c = Calendar.getInstance();
+
+        //SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        // String formattedDate = df.format(c.getTime());
+
+        String year = new SimpleDateFormat("yyyy-MM-dd").format(c.getTime());
+        String time = new SimpleDateFormat("HH:mm:ss").format(c.getTime());
+        values.put("ACTUAL", actual);
+        values.put("CON_ID", codigo);
+
+
+        base.update(tabla,values,"CON_ID = ?", new String[]{""+codigo});
+
+        base.close();
+    }
+
     final String tabla = "ENERGY_CONTEO";
     final String [] select = {"CON_ID", "ACTUAL", "HORA", "FECHA"};
 
@@ -121,6 +143,24 @@ public class clEnergia {
             do
             {
                 lista.add(new clDias(c.getInt(0),c.getInt(1), c.getString(2)));
+
+            }while(c.moveToNext());
+        }
+
+        c.close();
+        //base.close();
+        return lista;
+    }
+
+    public List<clEnergia> listaDiasHora(String fecha){
+        clBase db = new clBase(context);
+        SQLiteDatabase base = db.getReadableDatabase();
+        Cursor c =  base.query(tabla,select,"FECHA = ?",new String[]{fecha},null,null, "HORA DESC");
+        List<clEnergia> lista = new ArrayList<clEnergia>();
+        if(c.moveToFirst()){
+            do
+            {
+                lista.add(new clEnergia(c.getInt(0),c.getInt(1), c.getString(2), c.getString(3)));
 
             }while(c.moveToNext());
         }

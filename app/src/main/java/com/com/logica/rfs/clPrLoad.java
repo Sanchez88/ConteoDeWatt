@@ -10,6 +10,7 @@ import com.com.entidades.rfs.clEnergia;
 
 import java.util.List;
 
+import adaptadores.clAdaptadorListDias;
 import adaptadores.clAdaptadorMes;
 
 /**
@@ -18,11 +19,13 @@ import adaptadores.clAdaptadorMes;
 public class clPrLoad extends AsyncTask<Void,Void,List<clEnergia>> {
     Context ctx;
     RecyclerView recyclerView;
+    String fecha;
     ProgressDialog pd;
-    public clPrLoad(Context ctx, RecyclerView recyclerView){
+    public clPrLoad(Context ctx, RecyclerView recyclerView, String fecha){
         super();
         this.ctx = ctx;
         this.recyclerView = recyclerView;
+        this.fecha = fecha;
     }
 
     @Override
@@ -32,7 +35,7 @@ public class clPrLoad extends AsyncTask<Void,Void,List<clEnergia>> {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }*/
-        return new clEnergia(ctx).lista();
+        return new clEnergia(ctx).listaDiasHora(fecha);
     }
 
     @Override
@@ -50,6 +53,6 @@ public class clPrLoad extends AsyncTask<Void,Void,List<clEnergia>> {
         if(pd != null){
             pd.dismiss();
         }
-        //recyclerView.setAdapter(new clAdaptadorMes(ctx,clEnergia));
+        recyclerView.setAdapter(new clAdaptadorListDias(ctx,clEnergias));
     }
 }

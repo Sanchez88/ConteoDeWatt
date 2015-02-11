@@ -1,15 +1,18 @@
 package adaptadores;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 import com.com.entidades.rfs.clDias;
-import com.com.entidades.rfs.clEnergia;
+
 import com.elite.ronald.comluzcontego.R;
+import com.elite.ronald.comluzcontego.actListDias;
+
 
 import java.util.List;
 
@@ -45,7 +48,7 @@ public class clAdaptadorDias extends RecyclerView.Adapter<clAdaptadorDias.ViewHo
         return lista.size();
     }
 
-     class ViewHolder extends RecyclerView.ViewHolder{
+     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         // each data item is just a string in this case
         public TextView Mes, Conteo;
 
@@ -53,7 +56,14 @@ public class clAdaptadorDias extends RecyclerView.Adapter<clAdaptadorDias.ViewHo
             super(v);
             Mes = (TextView) v.findViewById(R.id.twListaMes);
             Conteo = (TextView) v.findViewById(R.id.twListaConteo);
-            //Mes.setOnClickListener(this); llamando el evento OnClickListener Por el momento  no lo llamare.
+            v.setOnClickListener(this);
         }
-    }
+
+         @Override
+         public void onClick(View v) {
+             Intent i = new Intent(context, actListDias.class);
+             i.putExtra("fecha", lista.get(getPosition()).getFecha());
+             context.startActivity(i);
+         }
+     }
 }

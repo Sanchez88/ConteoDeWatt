@@ -26,17 +26,38 @@ public class agregar_conteo extends ActionBarActivity {
         btn = (Button) findViewById(R.id.btnAgregarConteo);
         txt = (EditText) findViewById(R.id.txtConteo);
 
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                clEnergia cl = new clEnergia(getApplicationContext());
+        if(getIntent().getStringArrayExtra("codigo") != null){
+            final String [] con = getIntent().getStringArrayExtra("codigo");
+            txt.setText(con[1]);
 
-                cl.Guardar(Integer.parseInt(txt.getText().toString()));
+            btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    clEnergia cl = new clEnergia(getApplicationContext());
 
-                Toast.makeText(getApplicationContext(),"Guardado Correctamente.", Toast.LENGTH_SHORT).show();
-                txt.setText("");
-            }
-        });
+                    cl.Actualizar(Integer.parseInt(con[0]),Integer.parseInt(txt.getText().toString()));
+
+                    Toast.makeText(getApplicationContext(), "Actualizado Correctamente.", Toast.LENGTH_SHORT).show();
+                    txt.setText("");
+                    startActivity(new Intent(getApplicationContext(), actListDias.class).putExtra("fecha",con[2]));
+
+                }
+            });
+        }else {
+
+
+            btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    clEnergia cl = new clEnergia(getApplicationContext());
+
+                    cl.Guardar(Integer.parseInt(txt.getText().toString()));
+
+                    Toast.makeText(getApplicationContext(), "Guardado Correctamente.", Toast.LENGTH_SHORT).show();
+                    txt.setText("");
+                }
+            });
+        }
     }
 
 
