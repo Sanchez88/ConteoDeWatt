@@ -4,6 +4,17 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+import com.android.volley.toolbox.Volley;
 
 
 public class act_mes extends ActionBarActivity {
@@ -12,6 +23,33 @@ public class act_mes extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_act_mes);
+
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url ="http://192.168.0.254/app1/ServiciosWeb/ServicioDemo.asmx/Multiplicar";
+
+        JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.POST, url, null, new Response.Listener<JSONObject>() {
+
+            @Override
+            public void onResponse(JSONObject response) {
+
+
+                // TODO Auto-generated method stub
+                JSONArray array = new JSONArray();
+                array.put(response);
+                Toast.makeText(getApplicationContext(),response.optString("usuario"), Toast.LENGTH_LONG).show();
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // TODO Auto-generated method stub
+                Toast.makeText(getApplicationContext(),error.getMessage().toString(), Toast.LENGTH_LONG).show();
+            }
+        });
+
+        // Add the request to the RequestQueue.
+        queue.add(jsObjRequest);
     }
 
 
