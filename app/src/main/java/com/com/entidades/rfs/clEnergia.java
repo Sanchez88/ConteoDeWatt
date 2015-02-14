@@ -111,6 +111,7 @@ public class clEnergia {
         base.update(tabla,values,"CON_ID = ?", new String[]{""+codigo});
 
         base.close();
+
     }
 
     final String tabla = "ENERGY_CONTEO";
@@ -130,6 +131,7 @@ public class clEnergia {
         }
 
         c.close();
+        base.close();
         //base.close();
         return lista;
     }
@@ -148,6 +150,7 @@ public class clEnergia {
         }
 
         c.close();
+        base.close();
         //base.close();
         return lista;
     }
@@ -166,6 +169,7 @@ public class clEnergia {
         }
 
         c.close();
+        base.close();
         //base.close();
         return lista;
     }
@@ -184,6 +188,7 @@ public class clEnergia {
         }
 
         c.close();
+        base.close();
         //base.close();
         return lista;
     }
