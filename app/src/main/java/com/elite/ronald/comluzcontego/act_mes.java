@@ -3,6 +3,7 @@ package com.elite.ronald.comluzcontego;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
@@ -55,7 +56,7 @@ public class act_mes extends ActionBarActivity{
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
 
-        clFragmen.cargarReplaceFragmento(R.id.contenedorMes,getFragmentManager(),new fragListaMes());
+        clFragmen.cargarReplaceFragmento(R.id.contenedorMes, getFragmentManager(), new fragListaMes());
         /*RequestQueue queue = Volley.newRequestQueue(this);
         String url ="http://192.168.0.254/app1/ServiciosWeb/ServicioDemo.asmx/Multiplicar";
 
@@ -117,9 +118,11 @@ public class act_mes extends ActionBarActivity{
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        /*if (id == R.id.action_settings) {
-            return true;
-        }*/
+        if (id == R.id.action_navegacion) {
+            Intent i = new Intent(getApplicationContext(), act_navegacion.class);
+            startActivity(i);
+            //return true;
+        }
 
         return super.onOptionsItemSelected(item);
     }
