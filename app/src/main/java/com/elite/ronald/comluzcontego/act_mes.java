@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -25,9 +26,13 @@ import org.json.JSONObject;
 import com.android.volley.toolbox.JsonRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.com.entidades.rfs.clEnergia;
 import com.com.libreria.clFragmen;
+import com.com.logica.rfs.clPrList;
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class act_mes extends ActionBarActivity{
@@ -57,50 +62,10 @@ public class act_mes extends ActionBarActivity{
                 android.R.color.holo_red_light);
 
         clFragmen.cargarReplaceFragmento(R.id.contenedorMes, getFragmentManager(), new fragListaMes());
-        /*RequestQueue queue = Volley.newRequestQueue(this);
-        String url ="http://192.168.0.254/app1/ServiciosWeb/ServicioDemo.asmx/Multiplicar";
-
-        StringRequest jsObjRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-
-            @Override
-            public void onResponse(String response) {
 
 
-                // TODO Auto-generated method stub
-                String json = "";
-                boolean inicio=false, fin= false;
+        new clPrList(this).execute();
 
-                for(char c : response.toCharArray()){
-                    if(c == '<'){
-                        inicio = true;
-
-                    }
-                    if(c=='>'){
-                        fin = true;
-                    }
-
-                    if(inicio == true & fin == true){
-                        json += ""+c;
-                    }
-                }
-
-
-                    Toast.makeText(getApplicationContext(),json, Toast.LENGTH_LONG).show();
-
-
-            }
-        }, new Response.ErrorListener() {
-
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                // TODO Auto-generated method stub
-                Toast.makeText(getApplicationContext(),"Msj error: "+error.getMessage().toString(), Toast.LENGTH_LONG).show();
-            }
-
-        });
-
-        // Add the request to the RequestQueue.
-        queue.add(jsObjRequest);*/
     }
 
     @Override
@@ -118,10 +83,17 @@ public class act_mes extends ActionBarActivity{
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_navegacion) {
-            Intent i = new Intent(getApplicationContext(), act_navegacion.class);
-            startActivity(i);
-            //return true;
+        switch (id)
+        {
+            case R.id.action_addConteo:{
+                startActivity(new Intent(getApplicationContext(), agregar_conteo.class));
+                break;
+            }
+           /* case R.id.action_navegacion:{
+                startActivity(new Intent(getApplicationContext(), act_navegacion.class));
+                break;
+            }*/
+
         }
 
         return super.onOptionsItemSelected(item);

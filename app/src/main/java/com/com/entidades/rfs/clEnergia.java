@@ -117,7 +117,7 @@ public class clEnergia {
     final String tabla = "ENERGY_CONTEO";
     final String [] select = {"CON_ID", "ACTUAL", "HORA", "FECHA"};
 
-    public List<clEnergia> lista(){
+    public List<clEnergia> listaArray(){
         clBase db = new clBase(context);
         SQLiteDatabase base = db.getReadableDatabase();
         Cursor c =  base.query(tabla,select,null,null,null,null,null);
