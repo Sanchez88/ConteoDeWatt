@@ -16,11 +16,12 @@ import org.json.JSONObject;
 import java.util.List;
 
 import adaptadores.clAdaptadorListDias;
+import servicios.url.ConexionWS;
 
 /**
  * Created by elite88 on 06/02/2015.
  */
-public class clPrList extends AsyncTask<Void,Void,JSONArray> {
+public class clPrList extends AsyncTask<Void,Void,String> {
     Context ctx;
     JSONArray json;
 
@@ -30,10 +31,11 @@ public class clPrList extends AsyncTask<Void,Void,JSONArray> {
     }
 
     @Override
-    protected JSONArray doInBackground(Void... params) {
+    protected String doInBackground(Void... params) {
         List<clEnergia> ener = new clEnergia(ctx).listaArray();
         JSONArray js = new JSONArray();
         JSONObject obj;
+        String res= "";
         for (clEnergia item : ener) {
             try {
                 obj = new JSONObject();
@@ -48,14 +50,23 @@ public class clPrList extends AsyncTask<Void,Void,JSONArray> {
 
 
         }
+    try{
+        ConexionWS cx = new ConexionWS("http://tempuri.org/"
+                                       ,"http://192.168.0.254/app1/serviciosWeb/serviciodemo.asmx"
+                                       ,"sincronizarDatos","http://tempuri.org/sincronizarDatos");
+        cx.addParametro("cadenaJson",js.toString());
 
-        return js;
+         res = cx.EjecutarWS();
+    } catch (Exception e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+    }
+        return res;
     }
 
     @Override
-    protected void onPostExecute(JSONArray jsonArray) {
-        Log.e("JsonOject:",jsonArray.toString());
-
+    protected void onPostExecute(String jsonArray) {
+        Toast.makeText(ctx,jsonArray,Toast.LENGTH_SHORT).show();
     }
 
 
