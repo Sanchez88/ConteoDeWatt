@@ -1,19 +1,44 @@
 package com.elite.ronald.comluzcontego;
 
 import android.content.Intent;
+import android.os.Handler;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.com.libreria.clFragmen;
+
 
 public class actListDias extends ActionBarActivity {
 
+    SwipeRefreshLayout swipeLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_act_list_dias);
         setTitle(getIntent().getStringExtra("fecha"));
+
+        swipeLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_containerListDias);
+        swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        clFragmen.cargarReplaceFragmento(R.id.contenedorListDias, getFragmentManager(), new fragment_list_dia());
+                        swipeLayout.setRefreshing(false);
+                    }
+                },1000);
+            }
+        });
+        swipeLayout.setColorScheme(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
+
+        clFragmen.cargarReplaceFragmento(R.id.contenedorListDias, getFragmentManager(), new fragment_list_dia());
     }
 
 

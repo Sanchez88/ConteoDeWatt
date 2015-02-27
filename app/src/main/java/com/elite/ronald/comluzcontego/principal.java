@@ -7,6 +7,8 @@ import android.app.FragmentTransaction;
 
 import android.content.Intent;
 
+import android.os.Handler;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 
@@ -17,36 +19,37 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import com.com.libreria.clFragmen;
+
 
 public class principal extends ActionBarActivity{
     private ImageButton btn;
-
-    private Frag_Dias frdias;
-  //  private View v;
-   // EditText txt;
-    //AlertDialog.Builder dialogo;
-
-    private void inicializar(){
-        if(frdias != null)
-            frdias = new Frag_Dias();
-
-    }
-
-    private void cargarFragmento(Fragment fragment){
-        FragmentManager manager = getFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(R.id.contenedor, fragment);
-        transaction.commit();
-    }
+    SwipeRefreshLayout swipeLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
 
-        frdias = new Frag_Dias();
+        swipeLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_containerListDiasMes);
+        swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        clFragmen.cargarReplaceFragmento(R.id.contenedorListDiasMes, getFragmentManager(), new Frag_Dias());
+                        swipeLayout.setRefreshing(false);
+                    }
+                },1000);
+            }
+        });
+        swipeLayout.setColorScheme(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
 
-        cargarFragmento(frdias);
+        clFragmen.cargarReplaceFragmento(R.id.contenedorListDiasMes, getFragmentManager(), new Frag_Dias());
 
         btn = (ImageButton) findViewById(R.id.imgB);
 
@@ -59,11 +62,6 @@ public class principal extends ActionBarActivity{
             }
         });
 
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
     }
 
 

@@ -1,16 +1,13 @@
-
-
-
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".principal">
-
-
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:id="@+id/swipe_containerListDiasMes"
+    tools:context="com.elite.ronald.comluzcontego.principal">
     <RelativeLayout
-        android:id="@+id/contenedor"
+        android:id="@+id/contenedorListDiasMes"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_alignParentTop="true"
@@ -24,11 +21,12 @@
         android:layout_height="wrap_content"
         android:id="@+id/imgB"
         android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/contenedor"
-        android:layout_alignEnd="@+id/contenedor"
+        android:layout_alignRight="@+id/contenedorListDiasMes"
+        android:layout_alignEnd="@+id/contenedorListDiasMes"
         android:src="@drawable/abc_ic_menu_paste_mtrl_am_alpha"
         android:layout_marginBottom="15dp"
         android:layout_marginLeft="15dp" />
 
-</RelativeLayout>
+</android.support.v4.widget.SwipeRefreshLayout>
+
 
