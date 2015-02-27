@@ -5,6 +5,8 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.com.entidades.rfs.clEnergia;
@@ -23,11 +25,15 @@ import servicios.url.ConexionWS;
  */
 public class clPrList extends AsyncTask<Void,Void,String> {
     Context ctx;
+    TextView txt;
+    ProgressBar pb;
     JSONArray json;
 
-    public clPrList(Context ctx) {
+    public clPrList(Context ctx, TextView txt, ProgressBar pb) {
         super();
         this.ctx = ctx;
+        this.txt = txt;
+        this.pb = pb;
     }
 
     @Override
@@ -65,8 +71,15 @@ public class clPrList extends AsyncTask<Void,Void,String> {
     }
 
     @Override
+    protected void onPreExecute() {
+        txt.setText("");
+        pb.setVisibility(ProgressBar.VISIBLE);
+    }
+
+    @Override
     protected void onPostExecute(String jsonArray) {
-        Toast.makeText(ctx,jsonArray,Toast.LENGTH_SHORT).show();
+        pb.setVisibility(ProgressBar.INVISIBLE);
+        txt.setText(jsonArray);
     }
 
 

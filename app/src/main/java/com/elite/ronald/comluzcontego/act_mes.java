@@ -9,8 +9,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.com.libreria.clFragmen;
-import com.com.logica.rfs.clPrList;
-
 
 
 public class act_mes extends ActionBarActivity{
@@ -41,9 +39,6 @@ public class act_mes extends ActionBarActivity{
 
         clFragmen.cargarReplaceFragmento(R.id.contenedorMes, getFragmentManager(), new fragListaMes());
 
-
-        new clPrList(this).execute();
-
     }
 
     @Override
@@ -65,6 +60,10 @@ public class act_mes extends ActionBarActivity{
         {
             case R.id.action_addConteo:{
                 startActivity(new Intent(getApplicationContext(), agregar_conteo.class));
+                break;
+            }
+            case R.id.action_sinc:{
+                startActivity(new Intent(getApplicationContext(), act_sincronizar.class));
                 break;
             }
            /* case R.id.action_navegacion:{

@@ -43,10 +43,8 @@ public class ConexionWS {
             return resultado.toString();
         }
         catch (Exception e){
-            e.printStackTrace();
+            return e.getMessage().toString();
         }
-
-        return "";
     }
 }
 

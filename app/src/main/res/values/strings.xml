@@ -14,6 +14,8 @@
     <string name="action_listMes">Lista de Meses</string>
     <string name="action_listDias">Lista de Dias</string>
     <string name="action_navegacion">Demo</string>
+    <string name="action_sinc">Sincronizar</string>
+
 
     <string name="action_fecha">Fecha</string>
 
@@ -67,6 +69,8 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_example">Example action</string>
+    <string name="title_activity_act_sincronizar">act_sincronizar</string>
+    <string name="btn_sin">Sincronizar</string>
 
 
 </resources>

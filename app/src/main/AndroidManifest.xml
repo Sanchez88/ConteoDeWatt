@@ -34,6 +34,10 @@
             android:name=".act_navegacion"
             android:label="@string/title_activity_act_navegacion" >
         </activity>
+        <activity
+            android:name=".act_sincronizar"
+            android:label="@string/title_activity_act_sincronizar" >
+        </activity>
     </application>
 
 </manifest>

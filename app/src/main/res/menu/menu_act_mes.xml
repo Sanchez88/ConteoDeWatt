@@ -4,6 +4,8 @@
     tools:context="com.elite.ronald.comluzcontego.act_mes">
     <item android:id="@+id/action_addConteo" android:title="@string/action_addConteo"
         android:orderInCategory="100" app:showAsAction="never" />
+    <item android:id="@+id/action_sinc" android:title="@string/action_sinc"
+        android:orderInCategory="100" app:showAsAction="never" />
 
     <item android:id="@+id/action_navegacion" android:title="@string/action_navegacion"
         android:orderInCategory="100" app:showAsAction="never" />
