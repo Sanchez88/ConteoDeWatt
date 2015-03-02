@@ -20,10 +20,12 @@ public class clPrDias extends AsyncTask<Void,Void,List<clDias>> {
     Context ctx;
     RecyclerView recyclerView;
     ProgressDialog pd;
-    public clPrDias(Context ctx, RecyclerView recyclerView){
+    String fecha;
+    public clPrDias(Context ctx, RecyclerView recyclerView, String fecha){
         super();
         this.ctx = ctx;
         this.recyclerView = recyclerView;
+        this.fecha =  fecha;
     }
 
     @Override
@@ -33,7 +35,7 @@ public class clPrDias extends AsyncTask<Void,Void,List<clDias>> {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }*/
-        return new clEnergia(ctx).listaDias();
+        return new clEnergia(ctx).listaDias(this.fecha);
     }
 
     @Override

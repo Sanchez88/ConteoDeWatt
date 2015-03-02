@@ -1,6 +1,7 @@
 package com.elite.ronald.comluzcontego;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -31,7 +32,9 @@ public class Frag_Dias extends Fragment {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         // mRecyclerView.setAdapter(new clAdaptadorMes(lista));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        new clPrDias(getActivity(),mRecyclerView).execute();
+        Intent i = getActivity().getIntent();
+        String fecha = i.getStringExtra("fecha");
+        new clPrDias(getActivity(),mRecyclerView, fecha).execute();
 
         return v;
     }

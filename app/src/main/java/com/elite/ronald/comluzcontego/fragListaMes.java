@@ -43,13 +43,6 @@ public class fragListaMes extends Fragment {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         // mRecyclerView.setAdapter(new clAdaptadorMes(lista));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        mRecyclerView.setOnDragListener(new View.OnDragListener() {
-            @Override
-            public boolean onDrag(View v, DragEvent event) {
-                Toast.makeText(getActivity(),"Llego evento Drag", Toast.LENGTH_SHORT).show();
-                return false;
-            }
-        });
         new clPrMes(getActivity(),mRecyclerView).execute();
 
         return v;

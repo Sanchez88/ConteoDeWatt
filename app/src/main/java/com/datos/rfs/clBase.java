@@ -13,6 +13,7 @@ public class clBase extends SQLiteOpenHelper {
     private String tb = "CREATE TABLE ENERGY_CONTEO(" +
     "CON_ID INTEGER  PRIMARY KEY AUTOINCREMENT NOT NULL," +
     "ACTUAL INTEGER  NOT NULL," +
+    "ESTADO BOOLEAN DEFAULT false," +
     "HORA TIME NOT NULL," +
     "FECHA DATE NOT NULL" +
     ")";

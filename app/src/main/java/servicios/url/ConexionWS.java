@@ -43,7 +43,7 @@ public class ConexionWS {
             return resultado.toString();
         }
         catch (Exception e){
-            return e.getMessage().toString();
+            return "Error";
         }
     }
 }

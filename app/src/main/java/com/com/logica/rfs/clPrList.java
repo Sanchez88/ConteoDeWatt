@@ -63,6 +63,15 @@ public class clPrList extends AsyncTask<Void,Void,String> {
         cx.addParametro("cadenaJson",js.toString());
 
          res = cx.EjecutarWS();
+        if(!res.equals("Error")){
+            String arr[] = res.split(",");
+            for(String id : arr){
+                new clEnergia(ctx).ActualizarEstado(Integer.parseInt(id));
+            }
+            return "Resgistros sincronzados :"+arr.length;
+        }else
+            return "Error en la coxion.";
+
     } catch (Exception e) {
         // TODO Auto-generated catch block
         e.printStackTrace();

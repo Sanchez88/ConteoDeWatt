@@ -25,11 +25,12 @@ public class clEnergia {
 
     }
 
-    public clEnergia(int CON_ID, int ENERGY_CONTEO, String HORA, String FECHA) {
+    public clEnergia(int CON_ID, int ENERGY_CONTEO, String FECHA, String HORA, String ESTADO) {
         this.CON_ID = CON_ID;
         this.ENERGY_CONTEO = ENERGY_CONTEO;
         this.FECHA = FECHA;
         this.HORA = HORA;
+        this.ESTADO = ESTADO;
     }
 
     public int getCON_ID() {
@@ -68,6 +69,16 @@ public class clEnergia {
     private int ENERGY_CONTEO;
     private String FECHA;
     private String HORA;
+
+    public String getESTADO() {
+        return ESTADO;
+    }
+
+    public void setESTADO(String ESTADO) {
+        this.ESTADO = ESTADO;
+    }
+
+    private String ESTADO;
 
     public void Guardar(int actual){
         clBase db = new clBase(context);
@@ -114,18 +125,28 @@ public class clEnergia {
 
     }
 
+    public void ActualizarEstado(int codigo){
+        clBase db = new clBase(context);
+        SQLiteDatabase base = db.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("ESTADO", true);
+        base.update(tabla,values,"CON_ID = ?", new String[]{""+codigo});
+        base.close();
+
+    }
+
     final String tabla = "ENERGY_CONTEO";
-    final String [] select = {"CON_ID", "ACTUAL", "HORA", "FECHA"};
+    final String [] select = {"CON_ID", "ACTUAL", "FECHA", "HORA", "ESTADO"};
 
     public List<clEnergia> listaArray(){
         clBase db = new clBase(context);
         SQLiteDatabase base = db.getReadableDatabase();
-        Cursor c =  base.query(tabla,select,null,null,null,null,null);
+        Cursor c =  base.query(tabla,select,"ESTADO = ?",new String[]{"false"},null,null,null);
         List<clEnergia> lista = new ArrayList<clEnergia>();
         if(c.moveToFirst()){
             do
             {
-                lista.add(new clEnergia(c.getInt(0),c.getInt(1), c.getString(2), c.getString(3)));
+                lista.add(new clEnergia(c.getInt(0),c.getInt(1), c.getString(2), c.getString(3),c.getString(4)));
 
             }while(c.moveToNext());
         }
@@ -136,10 +157,10 @@ public class clEnergia {
         return lista;
     }
 
-    public List<clDias> listaDias(){
+    public List<clDias> listaDias(String fecha){
         clBase db = new clBase(context);
         SQLiteDatabase base = db.getReadableDatabase();
-        Cursor c =  base.query(tabla,new String[]{"COUNT(CON_ID) AS CON_ID","(MAX(ACTUAL) - MIN(ACTUAL)) AS CONSUMO", "FECHA"},null,null,"FECHA",null, "FECHA DESC");
+        Cursor c =  base.query(tabla,new String[]{"COUNT(CON_ID) AS CON_ID","(MAX(ACTUAL) - MIN(ACTUAL)) AS CONSUMO", "FECHA"},"strftime('%Y-%m', FECHA) = ?",new String[]{fecha},"FECHA",null, "FECHA DESC");
         List<clDias> lista = new ArrayList<clDias>();
         if(c.moveToFirst()){
             do
@@ -163,7 +184,7 @@ public class clEnergia {
         if(c.moveToFirst()){
             do
             {
-                lista.add(new clEnergia(c.getInt(0),c.getInt(1), c.getString(2), c.getString(3)));
+                lista.add(new clEnergia(c.getInt(0),c.getInt(1), c.getString(2), c.getString(3),c.getString(4)));
 
             }while(c.moveToNext());
         }
